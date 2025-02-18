@@ -22,7 +22,7 @@ public class Main {
             m = Scan.nextInt();
         }
 
-        // Buat Perhitungan
+        // Variabel buat perhitungan
         String[] arrayMatkul = new String[m]; // Memasukkan ke array
         Integer n = 3;
         Integer totalSKS = 0;
@@ -37,6 +37,7 @@ public class Main {
         // Input Mata Kuliah
         System.out.println("Isi Nama matkul: ");
         for (int i = 0; i < m; i++) {
+            System.out.println("Matkul ke-" + (i + 1)); // (i+1) agar dimulai dari 1 tidak 0
             if (Scan.hasNextLine()) {
                 arrayMatkul[i] = Scan.next();
             }
@@ -51,7 +52,14 @@ public class Main {
             // Input Nilai
             System.out.println("Nilai UTS, UAS, Tugas");
             for (int k = 0; k < n; k++) {
-                System.out.println("Posisi [" + i + "] [" + k + "]: ");
+                System.out.println("Posisi [" + (i + 1) + "] [" + (k + 1) + "]: ");
+                if (arrayNilai[i][k] == arrayNilai[i][0]) {
+                    System.out.println("Masukkan Nilai UTS: ");
+                } else if (arrayNilai[i][k] == arrayNilai[i][1]) {
+                    System.out.println("Masukkan Nilai UAS: ");
+                } else {
+                    System.out.println("Masukkan Nilai Tugas: ");
+                }
                 if (Scan.hasNextInt()) {
                     arrayNilai[i][k] = Scan.nextInt();
                 }
@@ -60,13 +68,13 @@ public class Main {
 
         // Akhir
         for (int i = 0; i < m; i++) {
-            System.out.println("Mata kuliah: " + arrayMatkul[i]);
+            System.out.println("\nMata kuliah: " + arrayMatkul[i]);
             System.out.println("SKS: " + arraySKS[i]);
 
             // Perhitungan
             nilaiAkhir = (arrayNilai[i][0] * 0.3) + (arrayNilai[i][1] * 0.3) + (arrayNilai[i][2] * 0.4);
 
-            // Penentuan Nilai Huruf dan NIlai Bobot
+            // Penentuan Nilai Huruf dan Nilai Bobot
             if (nilaiAkhir <= 100 && nilaiAkhir >= 80) {
                 nilaiHuruf = "A";
                 nilaiBobot = 4.0;
@@ -92,7 +100,7 @@ public class Main {
 
             // Menghitung SKS dengan nilai Bobot
             nilaiBobotAkhir = arraySKS[i] * nilaiBobot;
-            totalNilaiBobotAkhir = nilaiBobotAkhir;
+            totalNilaiBobotAkhir += nilaiBobotAkhir;
 
 
             // Output
@@ -106,7 +114,7 @@ public class Main {
             System.out.println("");
         }
 
-        // Output
+        // Output Akhir
         Double IPS = totalNilaiBobotAkhir / totalSKS;
         System.out.println("\nREKAPITULASI IPS:");
         System.out.println("Nama: " + nama);
@@ -115,11 +123,4 @@ public class Main {
         System.out.println("Total Nilai Bobot Akhir:" + totalNilaiBobotAkhir);
         System.out.printf("IPS: %.2f", IPS);
     }
-
-    // // Test
-    // System.out.println(m);
-    // System.out.println(arrayMatkul[0]);
-    // System.out.println(arrayNilai[1][0]);
-    // System.out.println("Namamu adalah " + nama);
-    // System.out.println("NIM: " + NIM);
 }
